@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Competidor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Cadastro de Competidor</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>
+          alert("{{ messages[0] }}");
+        </script>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/competidor" method="POST">
+        <input type="text" name="nome" placeholder="Nome do competidor" required>
+        <input type="number" name="idade" placeholder="Idade" required>
+        <input type="text" name="modalidade" placeholder="Modalidade" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+</div>
+
+</body>
+</html>
