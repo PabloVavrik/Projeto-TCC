@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Competidores cadastrados</title>
+</head>
+<body>
+
+    <h2>Lista de competidores</h2>
+
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Modalidade</th>
+        </tr>
+
+        {% for competidor in competidores %}
+        <tr>
+            <td>{{ competidor.nome }}</td>
+            <td>{{ competidor.idade }}</td>
+            <td>{{ competidor.modalidade }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
