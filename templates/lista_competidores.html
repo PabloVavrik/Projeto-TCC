@@ -2,16 +2,23 @@
 <html>
 <head>
     <title>Competidores cadastrados</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lista_competidores.css') }}">
+
 </head>
+
 <body>
+
+    <a href="/" class="btn-nav"> Cadastro </a>
 
     <h2>Lista de competidores</h2>
 
-    <table border="1">
+    <table>
         <tr>
             <th>Nome</th>
             <th>Idade</th>
             <th>Modalidade</th>
+            <th>Ações</th>
         </tr>
 
         {% for competidor in competidores %}
@@ -19,6 +26,15 @@
             <td>{{ competidor.nome }}</td>
             <td>{{ competidor.idade }}</td>
             <td>{{ competidor.modalidade }}</td>
+            <td>
+                <a class="btn btn-editar" href="/editar/{{ competidor.id }}">
+                    Editar
+                </a>
+
+                <a class="btn btn-deletar" href="/deletar/{{ competidor.id }}">
+                    Deletar
+                </a>
+            </td>
         </tr>
         {% endfor %}
 
