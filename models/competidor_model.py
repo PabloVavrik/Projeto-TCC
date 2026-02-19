@@ -29,3 +29,14 @@ def retornar_competidores():
     conexao.close()
 
     return competidores
+
+def deletar_competidor(id):
+    conexao = get_conexao()
+    cursor = conexao.cursor()
+
+    sql = "DELETE FROM competidores WHERE id = %s"
+    cursor.execute(sql, (id,))
+
+    conexao.commit()
+    cursor.close()
+    conexao.close()

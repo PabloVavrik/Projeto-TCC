@@ -8,6 +8,8 @@ def get_conexao():
     database = 'natacao'
     )
     return conexao
+
+
     
 
 #Este arquivo é responsável somente por fornecer a conexão com o BD. 

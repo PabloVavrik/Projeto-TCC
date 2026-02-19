@@ -1,5 +1,11 @@
-from flask import Flask, render_template
-from controllers.competidor_controller import cadastrar_competidor, exibir_competidores
+from flask import Flask, render_template, redirect, url_for
+from controllers.competidor_controller import (
+     cadastrar_competidor, 
+     exibir_competidores, 
+     deletar_competidor_controller
+     )
+
+
 
 
 app = Flask(__name__)
@@ -24,8 +30,9 @@ def lista():
 
 
 
-
-
+@app.route("/deletar/<int:id>")
+def deletar(id):
+     return deletar_competidor_controller(id)
 
 
 
