@@ -10,7 +10,7 @@ def cadastrar_competidor():
 
     competidor_model.criar_competidor(nome, idade, modalidade)
 
-    flash("Competidor cadastrado com sucesso!") #Esse flash é responsável por guardar uma mensagem durante a sessão do usuário
+    flash("Competidor cadastrado!") #Esse flash é responsável por guardar uma mensagem durante a sessão do usuário
                                                 #Ele é puxado la no HTML, a partir da linha 16
     return redirect("/")
 
@@ -18,8 +18,34 @@ def exibir_competidores():
     competidores = competidor_model.retornar_competidores()
     return render_template("lista_competidores.html", competidores = competidores)
 
-
+    
 
 def deletar_competidor_controller(id):
     competidor_model.deletar_competidor(id)
+
+    flash("Competidor deletado!") 
+
+    return redirect("/competidores")
+
+
+def editar_competidor_controller(id):
+    competidores = competidor_model.retornar_competidores()
+
+    competidor = None
+    for c in competidores:
+        if c['id'] == id:
+            competidor = c
+            break
+    return render_template("editar_competidor.html", competidor = competidor)
+
+
+def atualizar_competidor_controller(id):
+    nome = request.form['nome']
+    idade = request.form['idade']
+    modalidade = request.form['modalidade']
+
+    competidor_model.atualizar_competidor(id, nome, idade, modalidade)
+
+    flash("Competidor atualizado!")
+
     return redirect("/competidores")

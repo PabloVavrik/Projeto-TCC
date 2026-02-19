@@ -36,7 +36,26 @@ def deletar_competidor(id):
 
     sql = "DELETE FROM competidores WHERE id = %s"
     cursor.execute(sql, (id,))
-
     conexao.commit()
+    
+    cursor.close()
+    conexao.close()
+
+def atualizar_competidor(id, nome, idade, modalidade):
+    
+    conexao = get_conexao()
+    cursor = conexao.cursor()
+
+    sql = """
+        UPDATE competidores
+        SET nome = %s, idade = %s, modalidade = %s
+        WHERE id = %s
+    """
+
+    valores = (nome, idade, modalidade, id)
+
+    cursor.execute(sql, valores)
+    conexao.commit()
+
     cursor.close()
     conexao.close()

@@ -1,10 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
-from controllers.competidor_controller import (
-     cadastrar_competidor, 
-     exibir_competidores, 
-     deletar_competidor_controller
-     )
-
+from controllers import competidor_controller
 
 
 
@@ -20,20 +15,30 @@ def home():
 
 @app.route("/competidor", methods=['POST'])
 def criar():
-        return cadastrar_competidor()
+        return competidor_controller.cadastrar_competidor()
 
 
 
 @app.route("/competidores")
 def lista():
-     return exibir_competidores()
+     return competidor_controller.exibir_competidores()
 
 
 
 @app.route("/deletar/<int:id>")
 def deletar(id):
-     return deletar_competidor_controller(id)
+     return competidor_controller.deletar_competidor_controller(id)
 
+
+
+@app.route("/editar/<int:id>")
+def editar_competidor(id):
+     return competidor_controller.editar_competidor_controller(id)
+
+
+@app.route("/atualizar/<int:id>", methods=['POST'])
+def atualizar_competidor(id):
+     return competidor_controller.atualizar_competidor_controller(id)
 
 
 if __name__ == "__main__":
